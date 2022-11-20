@@ -1,34 +1,27 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
-int elmntSrch(int arr[], int size, int x) {
-    int rec;
- 
-    size--;
- 
-    if (size >= 0) {
-        if (arr[size] == x)
-            return size;
-        else
-            rec = elmntSrch(arr, size, x);
-    }
-    else
-        return -1;
- 
-    return rec;
+int searchElement(int arr[], int size, int x) {
+	
+	size--;
+	if (size < 0) {
+		return -1;
+	}
+	if (arr[size] == x) {
+		return size;
+	}
+	return searchElement(arr, size, x);
 }
- 
-int main(void) {
-    int arr[] = {12, 34, 54, 2, 3};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    int x = 3;
-    int indx;
- 
-    indx = elmntSrch(arr, size, x);
- 
-    if (indx != -1)
-        printf("Element %d is present at index %d", x, indx);
-    else
-        printf("Element %d is not present", x);
- 
-    return 0;
+
+
+int main() {
+	int arr[] = {17, 15, 11, 8, 13, 19};
+	int size = sizeof(arr) / sizeof(arr[0]);
+	int x = 11;
+	int idx = searchElement(arr, size, x);
+	if (idx != -1)
+		cout << "Element " << x << " is present at index " <<idx;
+	else
+		cout << "Element " << x << " is not present in the array";
+	return 0;
 }
